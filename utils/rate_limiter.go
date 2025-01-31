@@ -16,34 +16,27 @@ type RateLimitedReader struct {
 }
 
 func RateLimitValidator(s string) error {
-	ln := len(s) - 1
 	idx := strings.Index(s, "=")
-	if !strings.ContainsAny(s[idx:ln], "k,m,K,M") {
-		return fmt.Errorf("invalid rate limit value.\nUsage: --rate-limit=400k || --rate-limit=2M")
+	if idx == -1 || idx == len(s)-1 {
+		return fmt.Errorf("invalid rate limit format.\nUsage: --rate-limit=400k || --rate-limit=2M")
 	}
 
-	if strings.Contains(s, "k") {
-		// int value string
-		val := s[idx+1 : ln]
-		// convert the value to int
-		_, err := strconv.Atoi(val)
-		if err != nil {
-			return fmt.Errorf("invalid rate limit value")
-		}
-		return nil
+	// Extract value and unit
+	val, unit := s[idx+1:len(s)-1], s[len(s)-1:]
+
+	// Normalize unit to lowercase
+	unit = strings.ToLower(unit)
+
+	// Ensure the unit is valid
+	if unit != "k" && unit != "m" {
+		return fmt.Errorf("invalid rate limit unit.\nUsage: --rate-limit=400k || --rate-limit=2M")
 	}
 
-	if strings.Contains(s, "M") {
-		ln := len(s) - 1
-		// int value string
-		val := s[idx+1 : ln]
-		// convert the value to int
-		_, err := strconv.Atoi(val)
-		if err != nil {
-			return fmt.Errorf("invalid rate limit value there")
-		}
-		return nil
+	// Convert the numeric part
+	if _, err := strconv.Atoi(val); err != nil {
+		return fmt.Errorf("invalid numeric value in rate limit: %s", val)
 	}
+
 	return nil
 }
 
