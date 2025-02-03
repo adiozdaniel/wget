@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"wget/utils"
+	utils "wget/wgetUtils"
 )
 
 func (app *AppState) DownloadInBackground(file, urlStr, rateLimit string) error {

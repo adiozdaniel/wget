@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
-	"wget/utils"
+	utils "wget/wgetUtils"
 )
 
 func (app *AppState) singleDownloader(file, url, limit, directory string) error {

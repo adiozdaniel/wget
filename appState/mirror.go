@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 	"sync"
-	"wget/utils"
+	utils "wget/wgetUtils"
 
 	"golang.org/x/net/html"
 )

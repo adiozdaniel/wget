@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"os"
 	"strings"
-	"wget/utils"
+	utils "wget/wgetUtils"
 )
 
 // taskManager calls to action methods depending on the passed flags

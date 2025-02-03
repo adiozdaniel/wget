@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
-	"wget/utils"
+	utils "wget/wgetUtils"
 )
 
 func (app *AppState) DownloadMultipleFiles(filePath, outputFile, limit, directory string) error {

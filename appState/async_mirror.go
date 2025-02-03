@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"wget/utils"
+	utils "wget/wgetUtils"
 )
 
 func (app *AppState) mirrorAsyncDownload(outputFileName, urlStr, directory string) error {
