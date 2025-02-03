@@ -12,3 +12,7 @@ bin/
 *.a
 wget
 wget-log
+
+# Ignore go.mod and go.sum
+go.mod
+go.sum
